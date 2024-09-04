@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CGenius</title>
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+
+    <style>
+        .newBack {
+            background-color: #0B102D;
+            display: flex !important;
+            padding: 0 10%;
+        }
+
+        .navSearch {
+            width: 40vw !important;
+        }
+
+        .bodyBackground {
+            background: linear-gradient(to bottom, #8740CD, #2E053C);
+        }
+
+        .navbar-nav .nav-item .nav-link {
+            color: white !important;
+        }
+    </style>
+
+</head>
+
+<body class="layout-top-nav bodyBackground">
+
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light newBack">
+        <!-- Left navbar links -->
+        <a asp-controller="Home" asp-action="Index">
+            <img src="../image/CGeniusLogo.png" width="150" height="150" alt="Logo" />
+        </a>
+        <ul class="navbar-nav ml-auto">
+            @if (ViewBag.IsLogged != null && ViewBag.IsLogged == true)
+            {
+                <!-- Se o usuário estiver logado -->
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Seu perfil: @ViewBag.User.UserName</a>
+                </li>
+            }
+            else
+            {
+                <!-- Se o usuário não estiver logado -->
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="User" asp-action="LoginPage">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="User" asp-action="CadastroPage">Cadastro</a>
+                </li>
+            }
+        </ul>
+    </nav>
+    <!-- /.navbar -->
+    @RenderBody()
+
+    <!-- REQUIRED SCRIPTS -->
+    <!-- jQuery -->
+    <script src="../../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../../dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
